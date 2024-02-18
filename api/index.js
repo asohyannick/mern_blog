@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import userRoutes from './routes/user.route.js'
 const app = express();
 dotenv.config();
 // security packages
@@ -16,9 +17,7 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
     console.log(error)
 });
 // all routes
-app.get('/test', function(req, res) {
-    res.send('<h1>API is working successfully</h1>');
-})
+app.use('/api', userRoutes);
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}...`)
 });
