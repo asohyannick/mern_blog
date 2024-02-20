@@ -5,4 +5,4 @@ const ProvideRoute = () => {
   return currentUser ? <Outlet/> : <Navigate to='/sign-in'/>;
 }
 
-export default ProvideRoute
+export default ProvideRoute;
