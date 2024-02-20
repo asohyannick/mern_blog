@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Sidebar } from "flowbite-react";
 import { Link, useLocation } from "react-router-dom";
 import { HiUser, HiArrowSmRight } from "react-icons/hi";
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import { signOutSuccess } from "../redux/user/userSlice";
 const DashSidebar = () => {
   const dispatch = useDispatch();
