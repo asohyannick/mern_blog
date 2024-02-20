@@ -48,7 +48,7 @@ const SignUp = () => {
           </Link>
           <p className="text-sm mt-5">
             Welcome to my ultimate MERN Stack web developement blog. Please, you
-            can sign up with your username and password to get latest weekly
+            can sign up with your username and password or google to get latest weekly
             information about the MERN stack from my blog.
           </p>
         </div>
