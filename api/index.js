@@ -3,6 +3,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import { StatusCodes } from 'http-status-codes';
+import cookieParser from 'cookie-parser';
 // importing all routes
 import userRoutes from './routes/user.route.js'
 import authRoutes from './routes/auth.route.js'
@@ -12,6 +13,7 @@ dotenv.config();
 app.use(cors());
 // middleware packages
 app.use(express.json());
+app.use(cookieParser());
 const PORT = process.env.PORT || 8000;
 // db config
 mongoose.connect(process.env.MONGO_URI).then(() => {
