@@ -4,11 +4,13 @@ import SignIn from './SignIn';
 import SignUp from './SignUp';
 import Dashboard from './Dashboard';
 import Projects from './Projects';
+import CreatePost from './CreatePost';
 export {
     Home,
     About,
     SignIn,
     SignUp,
     Dashboard,
-    Projects
+    Projects,
+    CreatePost
 }

@@ -6,8 +6,12 @@ import {
   SignUp,
   Dashboard,
   Projects,
+  CreatePost
 } from "./pages/index";
-import { Header, FooterComp, PrivateRoute } from "./components/index";
+import { Header, FooterComp,
+   PrivateRoute,
+   OnlyAdminPrivateRoute
+ } from "./components/index";
 function App() {
   return (
     <BrowserRouter>
@@ -17,8 +21,12 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
+        {/* Protected routes dashboard and create post reserved only for an admin */}
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+        <Route element={<OnlyAdminPrivateRoute/>}>
+          <Route path="/create-post" element={<CreatePost/>}/>
         </Route>
         <Route path="/projects" element={<Projects />} />
       </Routes>
