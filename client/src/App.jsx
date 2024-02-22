@@ -6,7 +6,8 @@ import {
   SignUp,
   Dashboard,
   Projects,
-  CreatePost
+  CreatePost,
+  UpdatePost
 } from "./pages/index";
 import { Header, FooterComp,
    PrivateRoute,
@@ -27,6 +28,7 @@ function App() {
         </Route>
         <Route element={<OnlyAdminPrivateRoute/>}>
           <Route path="/create-post" element={<CreatePost/>}/>
+          <Route path="/update-post/:postId" element={<UpdatePost/>}/>
         </Route>
         <Route path="/projects" element={<Projects />} />
       </Routes>

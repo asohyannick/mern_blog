@@ -8,18 +8,46 @@ import {
   uploadBytesResumable,
 } from 'firebase/storage';
 import { app } from '../firebase';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import { useNavigate } from 'react-router-dom';
-const CreatePost = () => {
+import { useNavigate, useParams } from 'react-router-dom';
+import {useSelector} from 'react-redux';
+const UpdatePost = () => {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);
   const [imageUploadError, setImageUploadError] = useState(null);
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
-
+  const { postId } = useParams();
   const navigate = useNavigate();
+
+  const { currentUser } = useSelector((state) => state.user);
+
+  useEffect(() => {
+    try{
+        const fetchPost = async() => {
+          try{
+              const res = await fetch(`/api/post/getposts?postId=${postId}`);
+              const data = await res.json();
+              if(!res.ok) {
+                console.log(data.message);
+                setPublishError(data.message);
+                return;
+              }
+              if(res.ok) {
+                setPublishError(null);
+                setFormData(data.posts[0]);
+              }
+          } catch(error) {
+            setPublishError(null);
+          }
+        } 
+        //fetchPost();
+    } catch(error) {
+      console.log(error.message);
+    }
+  }, [postId]);
 
   const handleUpdloadImage = async () => {
     try {
@@ -51,7 +79,7 @@ const CreatePost = () => {
           });
         }
       );
-    } catch (error) {
+    } catch (error) { 
       setImageUploadError('Image upload failed');
       setImageUploadProgress(null);
       console.log(error);
@@ -60,8 +88,8 @@ const CreatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/post/create', {
-        method: 'POST',
+      const res = await fetch(`/api/post/updatepost/${formData._id}/${currentUser._id}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -83,7 +111,7 @@ const CreatePost = () => {
   };
   return (
     <div className='p-3 max-w-3xl mx-auto min-h-screen'>
-    <h1 className='text-center text-3xl my-7 font-semibold'>Create a post</h1>
+    <h1 className='text-center text-3xl my-7 font-semibold'>Update a post</h1>
     <form className='flex flex-col gap-4' onSubmit={handleSubmit}>
       <div className='flex flex-col gap-4 sm:flex-row justify-between'>
         <TextInput
@@ -92,6 +120,7 @@ const CreatePost = () => {
           required
           id='title'
           className='flex-1'
+          value={formData.title}
           onChange={(e) =>
             setFormData({ ...formData, title: e.target.value })
           }
@@ -100,6 +129,7 @@ const CreatePost = () => {
           onChange={(e) =>
             setFormData({ ...formData, category: e.target.value })
           }
+          value={formData.category}
         >
           <option value='uncategorized'>Select a category</option>
           <option value='javascript'>JavaScript</option>
@@ -146,6 +176,7 @@ const CreatePost = () => {
       )}
       <ReactQuill
         theme='snow'
+        value={formData.content}
         placeholder='Write something...'
         className='h-72 mb-12'
         required
@@ -154,7 +185,7 @@ const CreatePost = () => {
         }}
       />
       <Button type='submit' gradientDuoTone='purpleToPink'>
-        Publish
+        Update a post
       </Button>
       {publishError && (
         <Alert className='mt-5' color='failure'>
@@ -166,4 +197,4 @@ const CreatePost = () => {
   );
 };
 
-export default CreatePost;
+export default UpdatePost;
