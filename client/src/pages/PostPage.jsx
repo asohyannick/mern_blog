@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import {Button, Spinner} from 'flowbite-react';
 import { Link } from "react-router-dom";
-import CallToAction from '../components/CallToAction';
+import { 
+  CommentSection, 
+  CallToAction 
+} from "../components/index";
 const PostPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -53,6 +56,7 @@ const PostPage = () => {
     <div className="max-w-4xl mx-auto w-full">
      <CallToAction/>
     </div>
+    <CommentSection postId={post._id}/>
   </main>;
 };
 
