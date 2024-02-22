@@ -6,6 +6,7 @@ import DashSidebar from "./DashSidebar";
 import OnlyAdminPrivateRoute from "./OnlyAdminPrivateRoute";
 import DashPosts from "./DashPosts";
 import DashUsers from "./DashUsers";
+import CallToAction from "./CallToAction";
 export {
     Header,
     FooterComp,
@@ -14,5 +15,6 @@ export {
     DashSidebar,
     OnlyAdminPrivateRoute,
     DashPosts,
-    DashUsers
+    DashUsers,
+    CallToAction
 }
