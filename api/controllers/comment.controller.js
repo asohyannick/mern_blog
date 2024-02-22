@@ -82,3 +82,20 @@ export const editComment = async (req, res, next) => {
     next(error);
   }
 };
+
+
+export const deleteComment = async(req, res, next) => {
+  try{
+     const comment = await Comment.findById(req.params.commentId);
+     if(!comment) {
+      return next(errorHandler(StatusCodes.NOT_FOUND, 'Comment not found'));
+     }
+     if(comment.userId !== req.user.id && !req.user.isAdmin) {
+      return next(errorHandler(StatusCodes.UNAUTHORIZED, 'You are not allowed to delete this comment'));
+     }
+     await Comment.findByIdAndDelete(req.params.commentId);
+     res.status(StatusCodes.OK).json('The comment has been deleted');
+  } catch(error) {
+    next(error);
+  }
+}

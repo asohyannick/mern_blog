@@ -3,9 +3,9 @@ import moment from "moment";
 import { Alert } from "flowbite-react";
 import { useSelector } from "react-redux";
 import { FaThumbsUp } from "react-icons/fa";
-import { Textarea, Button } from "flowbite-react";
+import { Textarea, Button} from "flowbite-react";
 
-const Comment = ({ comment, onLike, onEdit }) => {
+const Comment = ({ comment, onLike, onEdit, onDelete }) => {
   const [user, setUser] = useState([]);
   const [userError, setUserError] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -128,6 +128,12 @@ const Comment = ({ comment, onLike, onEdit }) => {
                       className="text-gray-500 hover:text-blue-700"
                     >
                       Edit
+                    </button>
+                    <button
+                      onClick={() => onDelete(comment._id)}
+                      className="text-gray-500 hover:text-red-700"
+                    >
+                      Delete
                     </button>
                   </>
                 )}
