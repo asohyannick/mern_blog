@@ -7,7 +7,8 @@ import {
   Dashboard,
   Projects,
   CreatePost,
-  UpdatePost
+  UpdatePost,
+  PostPage
 } from "./pages/index";
 import { Header, FooterComp,
    PrivateRoute,
@@ -31,6 +32,7 @@ function App() {
           <Route path="/update-post/:postId" element={<UpdatePost/>}/>
         </Route>
         <Route path="/projects" element={<Projects />} />
+        <Route path="/post/:postSlug" element={<PostPage/>} />
       </Routes>
       <FooterComp />
     </BrowserRouter>

@@ -43,7 +43,7 @@ const UpdatePost = () => {
             setPublishError(null);
           }
         } 
-        //fetchPost();
+        fetchPost();
     } catch(error) {
       console.log(error.message);
     }
