@@ -65,6 +65,7 @@ body {
 }
 
 @media(max-width:1200px) {
+  .combined_resources,
   .postCard {
     flex-wrap: wrap;
   }
