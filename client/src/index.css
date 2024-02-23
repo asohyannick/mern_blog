@@ -69,4 +69,7 @@ body {
   .postCard {
     flex-wrap: wrap;
   }
+  .recent_post {
+    text-align: center;
+  }
 }
