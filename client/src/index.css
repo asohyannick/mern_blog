@@ -63,3 +63,9 @@ body {
 .dark .post-content a {
   color:red;
 }
+
+@media(max-width:1200px) {
+  .postCard {
+    flex-wrap: wrap;
+  }
+}
