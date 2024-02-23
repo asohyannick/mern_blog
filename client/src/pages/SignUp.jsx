@@ -20,7 +20,7 @@ const SignUp = () => {
       setErrorMessage(null);
       const res = await fetch("/api/auth/signup", {
         method: "POST",
-        headers: { "Content-Type" : "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
       const data = await res.json();
@@ -28,8 +28,8 @@ const SignUp = () => {
         return setErrorMessage(data.message);
       }
       setLoading(false);
-      if(res.ok) {
-        navigate('/sign-in');
+      if (res.ok) {
+        navigate("/sign-in");
       }
     } catch (error) {
       setErrorMessage(error.message);
@@ -48,9 +48,12 @@ const SignUp = () => {
             Blog
           </Link>
           <p className="text-sm mt-5">
-            Welcome to my ultimate MERN Stack web developement blog. Please, you
-            can sign up with your username and password or google to get latest weekly
-            information about the MERN stack from my blog.
+            Welcome to our blog, an immersive digital realm where technology
+            enthusiasts, software developers, engineers, and IT professionals
+            converge to unlock the boundless possibilities of the digital
+            landscape. Prepare to be captivated by a symphony of insightful
+            articles, cutting-edge innovations, and practical guides that will
+            empower you to thrive in the ever-evolving world of technology
           </p>
         </div>
         {/* right */}
@@ -97,7 +100,7 @@ const SignUp = () => {
                 "Sign Up"
               )}
             </Button>
-            <OAuth/>
+            <OAuth />
           </form>
           <div className="flex gap-2 text-sm mt-5">
             <span>Have an account?</span>

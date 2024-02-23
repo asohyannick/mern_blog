@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Label, TextInput, Button, Alert, Spinner } from "flowbite-react";
-import {signInSuccess, signInStart, signInFailure} from '../redux/user/userSlice';
-import {useDispatch, useSelector} from 'react-redux';
+import {
+  signInSuccess,
+  signInStart,
+  signInFailure,
+} from "../redux/user/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 import OAuth from "../components/OAuth";
 const SignIn = () => {
   const [formData, setFormData] = useState({});
-  const {loading, error: errorMessage} = useSelector(state => state.user);
+  const { loading, error: errorMessage } = useSelector((state) => state.user);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleChange = (e) => {
@@ -15,25 +19,25 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
-      return dispatch(signInFailure('Please fill all the fields'));
+      return dispatch(signInFailure("Please fill all the fields"));
     }
     try {
       dispatch(signInStart());
       const res = await fetch("/api/auth/signin", {
         method: "POST",
-        headers: { "Content-Type" : "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
       const data = await res.json();
       if (data.success === false) {
-        dispatch(signInFailure(data.message))
+        dispatch(signInFailure(data.message));
       }
-      if(res.ok) {
+      if (res.ok) {
         dispatch(signInSuccess(data));
-        navigate('/');
+        navigate("/");
       }
     } catch (error) {
-      dispatch(signInFailure(error.message))
+      dispatch(signInFailure(error.message));
     }
   };
   return (
@@ -48,9 +52,12 @@ const SignIn = () => {
             Blog
           </Link>
           <p className="text-sm mt-5">
-            Welcome to my ultimate MERN Stack web developement blog. Please, you
-            can sign in with your username and password or google to get latest weekly
-            information about the MERN stack from my blog.
+            Welcome to our blog, an immersive digital realm where technology
+            enthusiasts, software developers, engineers, and IT professionals
+            converge to unlock the boundless possibilities of the digital
+            landscape. Prepare to be captivated by a symphony of insightful
+            articles, cutting-edge innovations, and practical guides that will
+            empower you to thrive in the ever-evolving world of technology
           </p>
         </div>
         {/* right */}
@@ -88,7 +95,7 @@ const SignIn = () => {
                 "Sign In"
               )}
             </Button>
-            <OAuth/>
+            <OAuth />
           </form>
           <div className="flex gap-2 text-sm mt-5">
             <span>Don't have an account?</span>

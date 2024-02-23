@@ -60,7 +60,7 @@ const FooterComp = () => {
                   Linkedin
                 </Footer.Link>
                 <Footer.Link
-                  href="https://www.facebook.com/asohyannick"
+                  href="https://www.whatsapp.com/asohyannick"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

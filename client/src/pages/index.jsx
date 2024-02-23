@@ -7,6 +7,7 @@ import Projects from './Projects';
 import CreatePost from './CreatePost';
 import UpdatePost from './UpdatePost';
 import PostPage from './PostPage';
+import Search from './Search';
 export {
     Home,
     About,
@@ -16,5 +17,6 @@ export {
     Projects,
     CreatePost,
     UpdatePost,
-    PostPage
+    PostPage,
+    Search
 }

@@ -9,6 +9,7 @@ import {
   CreatePost,
   UpdatePost,
   PostPage,
+  Search
 } from "./pages/index";
 import {
   Header,
@@ -27,6 +28,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/search" element={<Search/>} />
         {/* Protected routes dashboard and create post reserved only for an admin */}
         <Route element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
