@@ -4,8 +4,6 @@ import mongoose from "mongoose";
 import cors from "cors";
 import { StatusCodes } from "http-status-codes";
 import cookieParser from "cookie-parser";
-import { dirname } from "path";
-import { fileURLToPath } from "url";
 import path from "path";
 // importing all routes
 import userRoutes from "./routes/user.route.js";
@@ -29,6 +27,7 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
+const __dirname = path.resolve();
 // all routes
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
@@ -36,13 +35,14 @@ app.use("/api/post", postRoutes);
 app.use("/api/comment", commentRoutes);
 
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+
 
 app.use(express.static(path.join(__dirname, "/client/dist")));
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
-// });
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, 
+    "client", "dist", "index.html"));
+});
 
 // middleware
 app.use((err, req, res, next) => {
