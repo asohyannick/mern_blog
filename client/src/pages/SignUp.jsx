@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Label, TextInput, Button, Alert, Spinner } from "flowbite-react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import OAuth from "../components/OAuth";
 const SignUp = () => {
   const [formData, setFormData] = useState({});
@@ -15,6 +17,12 @@ const SignUp = () => {
     if (!formData.username || !formData.email || !formData.password) {
       return setErrorMessage("Please fill out all fields.");
     }
+    toast.success("Account created successfully!", {
+      data: {
+        title: "Success toast",
+        text: "This is a success message",
+      },
+    });
     try {
       setLoading(true);
       setErrorMessage(null);
@@ -102,6 +110,7 @@ const SignUp = () => {
             </Button>
             <OAuth />
           </form>
+          <ToastContainer/>
           <div className="flex gap-2 text-sm mt-5">
             <span>Have an account?</span>
             <Link to="/sign-in" className="text-blue-500">

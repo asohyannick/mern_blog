@@ -8,6 +8,7 @@ import CreatePost from './CreatePost';
 import UpdatePost from './UpdatePost';
 import PostPage from './PostPage';
 import Search from './Search';
+import ErrorPage from './ErrorPage';
 export {
     Home,
     About,
@@ -18,5 +19,6 @@ export {
     CreatePost,
     UpdatePost,
     PostPage,
-    Search
+    Search,
+    ErrorPage
 }

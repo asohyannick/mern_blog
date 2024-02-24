@@ -8,6 +8,8 @@ import {
 } from "../redux/user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import OAuth from "../components/OAuth";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const SignIn = () => {
   const [formData, setFormData] = useState({});
   const { loading, error: errorMessage } = useSelector((state) => state.user);
@@ -21,6 +23,12 @@ const SignIn = () => {
     if (!formData.email || !formData.password) {
       return dispatch(signInFailure("Please fill all the fields"));
     }
+    toast(" Sign in Succussful", {
+      data: {
+        title: "Success toast",
+        text: "This is a success message",
+      },
+    })
     try {
       dispatch(signInStart());
       const res = await fetch("/api/auth/signin", {
@@ -96,6 +104,7 @@ const SignIn = () => {
               )}
             </Button>
             <OAuth />
+            <ToastContainer />
           </form>
           <div className="flex gap-2 text-sm mt-5">
             <span>Don't have an account?</span>

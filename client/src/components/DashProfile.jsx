@@ -21,6 +21,8 @@ import {
   signOutSuccess,
 } from "../redux/user/userSlice";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const DashProfile = () => {
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
@@ -105,6 +107,12 @@ const DashProfile = () => {
       setUpdateUserError("Please wait for the image to upload");
       return;
     }
+    toast.success("Admin account updated successfully", {
+      data: {
+        title: "Success toast",
+        text: "This is a success message",
+      },
+    });
     try {
       dispatch(updateStart());
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
@@ -120,7 +128,7 @@ const DashProfile = () => {
         setUpdateUserError(data.message);
       } else {
         dispatch(updateSuccess(data));
-        setUpdateUserSuccess("User's profile updated successfully");
+        // setUpdateUserSuccess("User's profile updated successfully");
       }
     } catch (error) {
       dispatch(updateFailure(error.message));
@@ -129,6 +137,12 @@ const DashProfile = () => {
   };
 
   const handleDeleteUser = async () => {
+    toast.error("User account deleted successfully", {
+      data: {
+        title: "Error toast",
+        text: "This is an error message",
+      },
+    });
     setShowModal(false);
     try {
       dispatch(deleteUserStart());
@@ -146,6 +160,12 @@ const DashProfile = () => {
     }
   };
   const handleSignOut = async () => {
+    toast.success("Sign out successful", {
+      data: {
+        title: "Sign out successful",
+        text: "This is a success message",
+      },
+    });
     try {
       const res = await fetch("/api/user/signout", {
         method: "POST",
@@ -260,6 +280,7 @@ const DashProfile = () => {
           Sign Out
         </span>
       </div>
+      <ToastContainer/>
       {updateUserSuccess && (
         <Alert className="mt-5" color="success">
           {updateUserSuccess}

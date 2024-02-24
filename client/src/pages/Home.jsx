@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { CallToAction, PostCard } from "../components/index";
-import { Spinner } from "flowbite-react";
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -22,6 +21,7 @@ const Home = () => {
       setError(null);
     }
   }, []);
+
   return (
     <div>
       <div className="flex flex-col gap-6 p-28  text-6xl px-3 max-w-6xl mx-auto">
@@ -83,11 +83,6 @@ const Home = () => {
       <div className="mx-auto p-3 flex-row gap-8 py-7">
         {posts && posts.length > 0 && (
           <div className="flex flex-row flex-wrap gap-6">
-            {loading && (
-              <div className="text-center mx-auto">
-                <Spinner/>
-              </div>
-            )}
             <h2 className="text-center recent_post mx-auto font-semibold text-2xl">
               Recent Posts
             </h2>

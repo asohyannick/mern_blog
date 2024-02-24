@@ -53,14 +53,14 @@ const FooterComp = () => {
                   Twitter
                 </Footer.Link>
                 <Footer.Link
-                  href="https://www.linkedin.com/asohyannick"
+                  href="https://www.linkedin.com/asohyannick/mern_blog"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   Linkedin
                 </Footer.Link>
                 <Footer.Link
-                  href="https://www.whatsapp.com/asohyannick"
+                  href="#"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

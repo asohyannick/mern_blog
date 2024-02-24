@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router-dom";
 import {
   Home,
   About,
@@ -9,7 +9,8 @@ import {
   CreatePost,
   UpdatePost,
   PostPage,
-  Search
+  Search,
+  ErrorPage
 } from "./pages/index";
 import {
   Header,
@@ -18,6 +19,7 @@ import {
   OnlyAdminPrivateRoute,
   ScrollToTop,
 } from "./components/index";
+
 function App() {
   return (
     <BrowserRouter>
@@ -39,6 +41,7 @@ function App() {
         </Route>
         <Route path="/projects" element={<Projects />} />
         <Route path="/post/:postSlug" element={<PostPage />} />
+        <Route path="*" element={<Navigate to='/'/>} />
       </Routes>
       <FooterComp />
     </BrowserRouter>
