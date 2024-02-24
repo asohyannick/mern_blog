@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import { StatusCodes } from 'http-status-codes';
 import cookieParser from 'cookie-parser';
+import path from 'path';
 // importing all routes
 import userRoutes from './routes/user.route.js'
 import authRoutes from './routes/auth.route.js'
@@ -28,6 +29,12 @@ app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/post', postRoutes);
 app.use('/api/comment', commentRoutes);
+
+app.use(express.static(path.join(__dirname, '/client/dist')));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+  });
+  
 
 // middleware 
 app.use((err, req, res, next) => {
